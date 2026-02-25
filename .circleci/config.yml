@@ -6,21 +6,26 @@ version: 2.1
 # See: https://circleci.com/docs/guides/orchestrate/jobs-steps/#jobs-overview & https://circleci.com/docs/reference/configuration-reference/#jobs
 jobs:
   build-and-test:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/guides/execution-managed/executor-intro/ & https://circleci.com/docs/reference/configuration-reference/#executor-job
-    docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/maven:3.8.5-openjdk-11
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+    # Use machine executor to avoid Docker Hub rate limiting
+    # Machine executor comes with Java and Maven pre-installed
+    machine:
+      image: ubuntu-2204:2023.10.1
 
     # Add steps to the job
     # See: https://circleci.com/docs/guides/orchestrate/jobs-steps/#steps-overview & https://circleci.com/docs/reference/configuration-reference/#steps
     steps:
       # Checkout the code as the first step.
       - checkout
+
+      # Install Java 11 and Maven
+      - run:
+          name: "Install Java 11 and Maven"
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y openjdk-11-jdk maven
+            java -version
+            mvn -version
+
       - run:
           name: "Build and run tests"
           command: "mvn install"
