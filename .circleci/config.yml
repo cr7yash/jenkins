@@ -17,12 +17,18 @@ jobs:
       # Checkout the code as the first step.
       - checkout
 
-      # Install Java 11 and Maven 3.9.6
+      # Install Java 21 and Maven 3.9.6
       - run:
-          name: "Install Java 11 and Maven"
+          name: "Install Java 21 and Maven"
           command: |
             sudo apt-get update
-            sudo apt-get install -y openjdk-11-jdk wget
+            sudo apt-get install -y openjdk-21-jdk wget
+
+            # Set Java 21 as default
+            sudo update-alternatives --set java /usr/lib/jvm/java-21-openjdk-amd64/bin/java
+            sudo update-alternatives --set javac /usr/lib/jvm/java-21-openjdk-amd64/bin/javac
+            export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+            echo 'export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64' >> $BASH_ENV
 
             # Download and install Maven 3.9.6
             wget https://archive.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
