@@ -50,7 +50,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.OK, result.kind);
     }
 
-    //  Partition P2: Non-Numeric String (Invalid) 
+    //  Partition P2: Non-Numeric String (Invalid)
 
     @Test
     @DisplayName("Port P2: Alphabetic string 'abc' is invalid")
@@ -66,7 +66,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.ERROR, result.kind);
     }
 
-    //  Partition P3: Negative Numbers (Invalid) 
+    //  Partition P3: Negative Numbers (Invalid)
 
     @Test
     @DisplayName("Port P3: Negative number '-1' is invalid (boundary)")
@@ -82,7 +82,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.ERROR, result.kind);
     }
 
-    //  Partition P4: Valid Range 0-65535 (Valid) 
+    //  Partition P4: Valid Range 0-65535 (Valid)
 
     @Test
     @DisplayName("Port P4: Port '0' is valid (lower boundary)")
@@ -119,7 +119,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.OK, result.kind);
     }
 
-    //  Partition P5: Above Maximum (Invalid) 
+    //  Partition P5: Above Maximum (Invalid)
 
     @Test
     @DisplayName("Port P5: Port '65536' is invalid (just above upper boundary)")
@@ -153,7 +153,7 @@ class PartitionTestingValidationTest {
         return FormValidation.validateIntegerInRange(value, MIN_THREADS, MAX_THREADS);
     }
 
-    //  Partition P1: Non-Numeric String (Invalid) 
+    //  Partition P1: Non-Numeric String (Invalid)
 
     @Test
     @DisplayName("Threads P1: Empty string is invalid")
@@ -169,7 +169,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.ERROR, result.kind);
     }
 
-    //  Partition P2: Below Minimum (Invalid) 
+    //  Partition P2: Below Minimum (Invalid)
 
     @Test
     @DisplayName("Threads P2: Value '4' is invalid (just below minimum boundary)")
@@ -192,7 +192,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.ERROR, result.kind);
     }
 
-    //  Partition P3: Valid Range 5-100 (Valid) 
+    //  Partition P3: Valid Range 5-100 (Valid)
 
     @Test
     @DisplayName("Threads P3: Value '5' is valid (lower boundary)")
@@ -229,7 +229,7 @@ class PartitionTestingValidationTest {
         assertEquals(Kind.OK, result.kind);
     }
 
-    // Partition P4: Above Maximum (Invalid) 
+    // Partition P4: Above Maximum (Invalid)
 
     @Test
     @DisplayName("Threads P4: Value '101' is invalid (just above upper boundary)")
