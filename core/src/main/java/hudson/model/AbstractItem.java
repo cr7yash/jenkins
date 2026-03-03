@@ -221,6 +221,18 @@ public abstract class AbstractItem extends Actionable implements Loadable, Item,
     public void setDescription(String description) throws IOException {
         this.description = description;
         save();
+        notifyItemUpdated();
+    }
+
+    /**
+     * Notifies listeners that this item has been updated.
+     * Extracted from {@link #setDescription(String)} so that subclasses
+     * (and test stubs) can override the notification behavior without
+     * being coupled to the static {@link ItemListener#fireOnUpdated(Item)} call.
+     *
+     * @since TODO
+     */
+    protected void notifyItemUpdated() {
         ItemListener.fireOnUpdated(this);
     }
 
